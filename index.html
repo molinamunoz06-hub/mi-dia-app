@@ -1,0 +1,2049 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7c5dfa">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Mi Día ✨</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+
+<style>
+:root {
+  --p: #7c5dfa;
+  --p-dark: #6344e5;
+  --p-soft: rgba(124, 93, 250, 0.12);
+  --accent: #ff6b9d;
+  --ink: #1e2235;
+  --muted: #6c748c;
+  --bg: #f4f2ff;
+  --card: rgba(255, 255, 255, 0.78);
+  --card-solid: #ffffff;
+  --line: rgba(124, 93, 250, 0.14);
+  --success: #5d50c4;
+  --shadow: 0 12px 32px rgba(72, 56, 148, 0.08);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+[data-theme="dark"] {
+  --p: #9b82ff;
+  --p-dark: #8265f5;
+  --p-soft: rgba(155, 130, 255, 0.16);
+  --accent: #ff7eb3;
+  --ink: #f0f2f9;
+  --muted: #98a2bd;
+  --bg: #0f111a;
+  --card: rgba(27, 30, 46, 0.78);
+  --card-solid: #1b1e2e;
+  --line: rgba(255, 255, 255, 0.09);
+  --success: #b8a9ff;
+  --shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(75px);
+  opacity: 0.55;
+  animation: floatOrb 14s ease-in-out infinite alternate;
+}
+.orb-1 { width: 280px; height: 280px; background: #c5b6ff; top: -60px; left: -60px; }
+.orb-2 { width: 260px; height: 260px; background: #ffc4dc; bottom: 12%; right: -70px; animation-delay: -5s; }
+.orb-3 { width: 220px; height: 220px; background: #bfe9ff; top: 42%; left: -50px; animation-delay: -9s; }
+
+[data-theme="dark"] .orb-1 { background: #3c2a85; opacity: 0.45; }
+[data-theme="dark"] .orb-2 { background: #5e2348; opacity: 0.38; }
+[data-theme="dark"] .orb-3 { background: #1c3d5e; opacity: 0.38; }
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(25px, 35px) scale(1.1); }
+}
+
+main {
+  max-width: 450px;
+  margin: auto;
+  min-height: 100vh;
+  padding: 18px 16px 115px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 2px 18px;
+}
+.logo {
+  font-weight: 800;
+  font-size: 27px;
+  letter-spacing: -1.2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.logo span {
+  background: linear-gradient(135deg, var(--p), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-actions { display: flex; gap: 8px; align-items: center; }
+.icon-btn {
+  height: 40px;
+  min-width: 40px;
+  padding: 0 11px;
+  border-radius: 14px;
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--ink);
+  transition: transform 0.18s, background 0.2s;
+}
+.icon-btn:hover { transform: translateY(-1px); }
+.icon-btn:active { transform: scale(0.94); }
+
+h1 { font-size: 27px; font-weight: 800; letter-spacing: -0.8px; margin: 0 0 4px; }
+h2 { font-size: 17px; font-weight: 700; margin: 0 0 5px; letter-spacing: -0.3px; }
+.muted { color: var(--muted); font-size: 13px; margin: 0; line-height: 1.45; }
+
+.panel {
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: var(--glass-border);
+  border-radius: 26px;
+  padding: 20px;
+  margin-top: 16px;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, background 0.3s;
+}
+
+.quote-postcard {
+  position: relative;
+  border-radius: 26px;
+  padding: 22px 20px;
+  margin-top: 14px;
+  background: linear-gradient(135deg, #7c5dfa 0%, #a367f9 55%, #ff759f 100%);
+  color: #ffffff;
+  box-shadow: 0 14px 30px rgba(124, 93, 250, 0.28);
+  overflow: hidden;
+}
+.quote-postcard::before {
+  content: '✨';
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  font-size: 26px;
+  opacity: 0.85;
+  animation: pulseStar 3s infinite ease-in-out;
+}
+.quote-postcard::after {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  bottom: -50px;
+  right: -30px;
+}
+@keyframes pulseStar {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.18) rotate(12deg); }
+}
+.quote-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 10px;
+}
+.quote-postcard h2 {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.moods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 15px;
+}
+.mood {
+  border: 1.5px solid var(--line);
+  border-radius: 18px;
+  background: var(--card-solid);
+  padding: 14px 12px;
+  text-align: left;
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+.mood:hover { transform: translateY(-2px); border-color: var(--p); }
+.mood:active { transform: scale(0.96); }
+.mood .e {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 6px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.mood:hover .e, .mood.selected .e { transform: scale(1.2) rotate(-5deg); }
+.mood b { font-size: 14px; font-weight: 700; display: block; }
+.mood small { display: block; color: var(--muted); font-size: 11px; margin-top: 2px; }
+.mood.selected {
+  border-color: var(--p);
+  background: var(--p-soft);
+  box-shadow: 0 6px 18px rgba(124, 93, 250, 0.16);
+}
+
+textarea, input[type="text"], select {
+  width: 100%;
+  border: 1.5px solid var(--line);
+  border-radius: 15px;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 14px;
+  resize: vertical;
+  margin-top: 10px;
+  min-height: 46px;
+  background: var(--card-solid);
+  color: var(--ink);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+textarea:focus, input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: var(--p);
+  box-shadow: 0 0 0 3px var(--p-soft);
+}
+
+.primary {
+  border: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--p), #9466ff);
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px;
+  width: 100%;
+  margin-top: 14px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(124, 93, 250, 0.28);
+  transition: transform 0.18s, box-shadow 0.2s;
+}
+.primary:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(124, 93, 250, 0.36); }
+.primary:active { transform: scale(0.97); }
+
+.secondary-btn {
+  border: 1.5px solid var(--p);
+  border-radius: 15px;
+  background: var(--p-soft);
+  color: var(--p);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 11px 14px;
+  width: 100%;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s;
+}
+.secondary-btn:hover { background: var(--p); color: #fff; }
+.secondary-btn:active { transform: scale(0.97); }
+
+.message {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--success);
+  min-height: 18px;
+  margin-top: 9px;
+  text-align: center;
+}
+
+.vibe-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+.vibe-pill {
+  flex: 1;
+  min-width: 90px;
+  border: 1.5px solid var(--line);
+  background: var(--card-solid);
+  color: var(--ink);
+  border-radius: 14px;
+  padding: 9px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s;
+}
+.vibe-pill.active {
+  background: var(--p);
+  color: white;
+  border-color: var(--p);
+  box-shadow: 0 4px 12px rgba(124, 93, 250, 0.25);
+}
+.music-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.music-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.15s;
+}
+.music-btn:active { transform: scale(0.96); }
+.btn-yt { background: linear-gradient(135deg, #ff3b5c, #e62143); box-shadow: 0 6px 16px rgba(230, 33, 67, 0.24); }
+.btn-sp { background: linear-gradient(135deg, #1ed760, #16a34a); box-shadow: 0 6px 16px rgba(22, 163, 74, 0.24); }
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 13px;
+}
+.stat {
+  background: var(--p-soft);
+  border-radius: 18px;
+  padding: 14px;
+  text-align: center;
+}
+.stat strong { font-size: 24px; font-weight: 800; display: block; color: var(--p); }
+.stat span { font-size: 12px; font-weight: 600; color: var(--muted); }
+
+.nav {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(426px, calc(100% - 24px));
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: var(--glass-border);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(30, 34, 53, 0.14);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 8px 6px;
+  z-index: 15;
+}
+.nav button {
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  display: grid;
+  gap: 3px;
+  justify-items: center;
+  cursor: pointer;
+  padding: 4px 0;
+  border-radius: 14px;
+  transition: all 0.2s;
+}
+.nav button span:first-child { font-size: 19px; transition: transform 0.2s; }
+.nav button.active {
+  color: var(--p);
+  font-weight: 800;
+  background: var(--p-soft);
+}
+.nav button.active span:first-child { transform: scale(1.15); }
+
+main > section {
+  animation: fadeSlideUp 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hidden { display: none !important; }
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.cal-nav-btn {
+  background: var(--p-soft);
+  color: var(--p);
+  border: none;
+  border-radius: 12px;
+  width: 34px;
+  height: 34px;
+  font-weight: bold;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+  text-align: center;
+  margin-top: 12px;
+}
+.calday { font-size: 11px; color: var(--muted); font-weight: 700; }
+.cell {
+  border-radius: 13px;
+  background: var(--card-solid);
+  border: 1px solid var(--line);
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 2px;
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.2s;
+}
+.cell:hover { transform: scale(1.08); box-shadow: 0 4px 12px rgba(124, 93, 250, 0.15); }
+.cell.has-entry { background: var(--p-soft); border-color: transparent; font-size: 18px; }
+.cell.today { outline: 2px solid var(--p); font-weight: 800; }
+.cell.future { opacity: 0.4; cursor: not-allowed; }
+.cell.future:hover { transform: none; box-shadow: none; }
+
+.search-box {
+  position: relative;
+  margin-top: 10px;
+}
+.search-box input {
+  padding-left: 38px;
+  margin-top: 0;
+}
+.search-icon {
+  position: absolute;
+  left: 13px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  color: var(--muted);
+  pointer-events: none;
+}
+.filter-chips {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 12px 0 4px;
+  scrollbar-width: none;
+}
+.filter-chips::-webkit-scrollbar { display: none; }
+.chip {
+  border: 1px solid var(--line);
+  background: var(--card-solid);
+  color: var(--muted);
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.chip.active {
+  background: var(--p);
+  color: white;
+  border-color: var(--p);
+}
+
+.history-card {
+  border-radius: 20px;
+  padding: 15px 16px;
+  margin-top: 12px;
+  background: var(--card-solid);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+  position: relative;
+}
+.history-card:hover { transform: translateY(-2px); border-color: var(--p); }
+.history-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.history-date {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--p);
+  text-transform: capitalize;
+}
+.history-actions-mini {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.story-btn {
+  background: var(--p-soft);
+  color: var(--p);
+  border: none;
+  border-radius: 10px;
+  padding: 5px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.history-note {
+  font-size: 14px;
+  margin: 4px 0;
+  line-height: 1.45;
+}
+.history-grat {
+  font-size: 12px;
+  color: var(--ink);
+  margin-top: 8px;
+  background: var(--p-soft);
+  padding: 8px 12px;
+  border-radius: 12px;
+}
+
+.rowitem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rowitem:last-child { border: 0; }
+.round {
+  width: 44px; height: 44px;
+  border-radius: 15px;
+  background: var(--p-soft);
+  display: grid; place-items: center;
+  font-size: 21px;
+  flex-shrink: 0;
+}
+.grow { flex: 1; }
+.tag { font-size: 12px; color: var(--muted); }
+.pill {
+  display: inline-block;
+  background: var(--p-soft);
+  color: var(--p);
+  border-radius: 20px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.toast {
+  position: fixed;
+  bottom: 92px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 13px 22px;
+  border-radius: 18px;
+  font-size: 13px;
+  font-weight: 700;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 50;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+  max-width: 90%;
+  text-align: center;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 17, 26, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  z-index: 35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+  padding: 16px;
+  overflow-y: auto;
+}
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal {
+  background: var(--card-solid);
+  border-radius: 28px;
+  padding: 24px;
+  max-width: 395px;
+  width: 100%;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  transform: scale(0.94);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-overlay.show .modal { transform: scale(1); }
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.close-x {
+  background: var(--p-soft);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  color: var(--ink);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.story-card-preview {
+  border-radius: 24px;
+  padding: 28px 22px;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(124, 93, 250, 0.3);
+  margin: 10px 0 16px;
+}
+.story-emoji-big { font-size: 56px; display: block; margin: 10px 0; filter: drop-shadow(0 6px 12px rgba(0,0,0,0.2)); }
+.story-quote-text { font-size: 16px; font-weight: 600; line-height: 1.5; margin: 14px 0; background: rgba(255,255,255,0.16); padding: 14px; border-radius: 16px; backdrop-filter: blur(6px); }
+.story-grat-box { font-size: 12px; opacity: 0.92; margin-top: 10px; }
+.story-brand { font-size: 11px; font-weight: 800; letter-spacing: 1px; opacity: 0.8; margin-top: 18px; text-transform: uppercase; }
+
+.breath-circle {
+  width: 126px; height: 126px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--p-soft), rgba(255, 107, 157, 0.18));
+  border: 2px solid var(--p);
+  margin: 22px auto;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--p);
+  transition: transform 4s ease-in-out;
+}
+.breath-circle.inhale { transform: scale(1.35); }
+.breath-circle.exhale { transform: scale(1); }
+
+.respiro-btn {
+  position: fixed;
+  bottom: 92px;
+  right: 18px;
+  width: 54px; height: 54px;
+  border-radius: 19px;
+  background: linear-gradient(135deg, var(--p), var(--accent));
+  color: white;
+  border: none;
+  font-size: 24px;
+  box-shadow: 0 8px 24px rgba(124, 93, 250, 0.42);
+  cursor: pointer;
+  z-index: 14;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+}
+.respiro-btn:hover { transform: scale(1.08); }
+
+.guided {
+  margin-top: 14px;
+  padding: 14px 16px;
+  background: var(--p-soft);
+  border-left: 4px solid var(--p);
+  border-radius: 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.guided strong { display: block; margin-bottom: 4px; color: var(--p); }
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 115px;
+  margin-top: 14px;
+  padding-top: 10px;
+}
+.bar-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.bar {
+  width: 100%;
+  border-radius: 10px 10px 5px 5px;
+  min-height: 8px;
+  transition: height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.bar-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.summary-item {
+  background: var(--p-soft);
+  border-radius: 16px;
+  padding: 12px;
+  text-align: center;
+}
+.summary-item strong { display: block; font-size: 20px; font-weight: 800; }
+.summary-item span { font-size: 11px; font-weight: 600; color: var(--muted); }
+
+.backup-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+.danger-btn {
+  border: 1.5px solid #ff5c77;
+  background: transparent;
+  color: #ff5c77;
+  border-radius: 14px;
+  padding: 11px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 12px;
+  width: 100%;
+}
+
+#confettiCanvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+}
+</style>
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<main>
+  <header>
+    <div class="logo">mi<span>día.</span></div>
+    <div class="header-actions">
+      <button class="icon-btn" id="langToggle" title="Cambiar idioma / Change language">ES</button>
+      <button class="icon-btn" id="themeToggle" title="Cambiar tema">🌙</button>
+    </div>
+  </header>
+
+  <section id="home">
+    <p class="muted" id="date" style="text-transform:capitalize;font-weight:600"></p>
+    <h1 data-i18n="hello">¡Hola! 💜</h1>
+
+    <div class="quote-postcard">
+      <span class="quote-badge" data-i18n="quoteLabel">✨ Una frase para ti hoy</span>
+      <h2 id="dailyQuote">Cada pequeño paso cuenta.</h2>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="howWasDay">¿Cómo ha sido tu día?</h2>
+      <p class="muted" data-i18n="noWrongAnswers">No hay respuestas buenas ni malas.</p>
+      <div class="moods" id="homeMoods">
+        <button class="mood" data-m="Muy bueno"><span class="e">🤩</span><b data-i18n="moodGreat">Muy bueno</b><small data-i18n="moodGreatSub">Un día genial</small></button>
+        <button class="mood" data-m="Bueno"><span class="e">😊</span><b data-i18n="moodGood">Bueno</b><small data-i18n="moodGoodSub">Me he sentido bien</small></button>
+        <button class="mood" data-m="Regular"><span class="e">😐</span><b data-i18n="moodOk">Regular</b><small data-i18n="moodOkSub">Un día normal</small></button>
+        <button class="mood" data-m="Malo"><span class="e">😔</span><b data-i18n="moodBad">Malo</b><small data-i18n="moodBadSub">Hoy ha costado</small></button>
+      </div>
+
+      <div id="guidedBox" class="guided hidden"></div>
+
+      <textarea id="note" data-i18n-placeholder="notePlaceholder" placeholder="¿Quieres contar algo de tu día? (opcional)"></textarea>
+
+      <div style="margin-top:16px">
+        <h2 style="font-size:15px" data-i18n="gratTitle">Gratitud (opcional)</h2>
+        <p class="muted" style="margin-bottom:4px" data-i18n="gratSub">¿Hay algo pequeño por lo que estés agradecido/a hoy?</p>
+        <div class="gratitude-list">
+          <input type="text" id="grat1" placeholder="1. ...">
+          <input type="text" id="grat2" placeholder="2. ...">
+          <input type="text" id="grat3" placeholder="3. ...">
+        </div>
+      </div>
+
+      <button class="primary" id="save" data-i18n="saveDay">Guardar mi día</button>
+      <div class="message" id="msg"></div>
+    </div>
+
+    <div id="recommendation"></div>
+
+    <div class="panel">
+      <h2 data-i18n="evolutionTitle">Tu evolución (últimos 7 días)</h2>
+      <div class="chart" id="moodChart"></div>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="summaryTitle">Resumen</h2>
+      <div id="summaryContent"></div>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="progressTitle">Tu progreso</h2>
+      <div class="stats">
+        <div class="stat"><strong id="total">0</strong><span data-i18n="daysLogged">Días registrados</span></div>
+        <div class="stat"><strong id="streak">0 🔥</strong><span data-i18n="streakDays">Días seguidos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar" class="hidden">
+    <h1 data-i18n="calTitle">Tu calendario 📅</h1>
+    <p class="muted" data-i18n="calSub">Toca cualquier día para ver o editar su registro.</p>
+    <div class="panel">
+      <div class="cal-header">
+        <button class="cal-nav-btn" id="prevMonth" title="Mes anterior">◀</button>
+        <h2 id="month" style="margin:0;text-transform:capitalize"></h2>
+        <button class="cal-nav-btn" id="nextMonth" title="Mes siguiente">▶</button>
+      </div>
+      <div class="calendar" id="cal"></div>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="searchTitle">Tus recuerdos 🔍</h2>
+      <p class="muted" data-i18n="searchSub">Filtra por estado de ánimo, busca palabras o abre una tarjeta Story.</p>
+      <div class="search-box">
+        <span class="search-icon">🔎</span>
+        <input type="text" id="searchInput" data-i18n-placeholder="searchPlaceholder" placeholder="Buscar palabras clave...">
+      </div>
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="ALL" data-i18n="filterAll">Todos</button>
+        <button class="chip" data-filter="Muy bueno">🤩 <span data-i18n="moodGreat">Muy bueno</span></button>
+        <button class="chip" data-filter="Bueno">😊 <span data-i18n="moodGood">Bueno</span></button>
+        <button class="chip" data-filter="Regular">😐 <span data-i18n="moodOk">Regular</span></button>
+        <button class="chip" data-filter="Malo">😔 <span data-i18n="moodBad">Malo</span></button>
+      </div>
+      <div id="historyList"></div>
+    </div>
+  </section>
+
+  <section id="achievements" class="hidden">
+    <h1 data-i18n="achTitle">Tus logros 🏆</h1>
+    <p class="muted" data-i18n="achSub">Pequeños pasos que merecen celebrarse.</p>
+    <div class="panel" id="badges"></div>
+  </section>
+
+  <section id="friends" class="hidden">
+    <h1 data-i18n="friendsTitle">Amigos 🫶</h1>
+    <p class="muted" data-i18n="friendsSub">Este apartado es opcional. Tus registros seguirán siendo privados.</p>
+    <div class="panel">
+      <div class="round">🔒</div>
+      <h2 style="margin-top:12px" data-i18n="personalSpace">Tu espacio personal</h2>
+      <p class="muted" data-i18n="personalSpaceDesc">Nadie puede ver tus días ni tu estado de ánimo. Más adelante podrás añadir amigos si te apetece.</p>
+      <span class="pill" style="margin-top:10px" data-i18n="privacyOn">Privacidad activada</span>
+    </div>
+  </section>
+
+  <section id="profile" class="hidden">
+    <h1 data-i18n="profTitle">Mi perfil 👤</h1>
+    <p class="muted" data-i18n="profSub">Tu cuenta, idioma y copia de seguridad.</p>
+
+    <div class="panel">
+      <h2 data-i18n="langTitle">Idioma / Language 🌐</h2>
+      <p class="muted" data-i18n="langSub">Elige el idioma de la aplicación.</p>
+      <select id="langSelect">
+        <option value="es">🇪🇸 Español</option>
+        <option value="en">🇬🇧 English</option>
+      </select>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="backupTitle">Copia de seguridad 💾</h2>
+      <p class="muted" data-i18n="backupSub">Guarda tus registros en un archivo para no perderlos nunca o pasarlos a otro dispositivo.</p>
+      <div class="backup-actions">
+        <button class="secondary-btn" id="exportBtn" style="margin-top:0" data-i18n="exportBtn">⬇️ Exportar JSON</button>
+        <button class="secondary-btn" id="importBtn" style="margin-top:0" data-i18n="importBtn">⬆️ Importar JSON</button>
+        <input type="file" id="importFile" accept=".json" class="hidden">
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2 data-i18n="tastesTitle">Mis gustos 💜</h2>
+      <p class="muted" data-i18n="tastesSub">Elige lo que te gusta para personalizar tus recomendaciones musicales.</p>
+      <div id="tasteChoices" class="moods" style="grid-template-columns:1fr 1fr">
+        <label class="mood"><input type="checkbox" value="Música"> 🎵 <span data-i18n="tasteMusic">Música</span></label>
+        <label class="mood"><input type="checkbox" value="Videojuegos"> 🎮 <span data-i18n="tasteGames">Videojuegos</span></label>
+        <label class="mood"><input type="checkbox" value="Animales"> 🐾 <span data-i18n="tasteAnimals">Animales</span></label>
+        <label class="mood"><input type="checkbox" value="Deporte"> ⚽ <span data-i18n="tasteSports">Deporte</span></label>
+        <label class="mood"><input type="checkbox" value="Viajes"> 🌍 <span data-i18n="tasteTravel">Viajes</span></label>
+        <label class="mood"><input type="checkbox" value="Películas y series"> 🎬 <span data-i18n="tasteMovies">Películas y series</span></label>
+        <label class="mood"><input type="checkbox" value="Naturaleza"> 🌳 <span data-i18n="tasteNature">Naturaleza</span></label>
+        <label class="mood"><input type="checkbox" value="Cocina"> 🍳 <span data-i18n="tasteCooking">Cocina</span></label>
+      </div>
+      <button class="primary" id="saveTastes" data-i18n="saveTastes">Guardar mis gustos</button>
+      <div class="message" id="tasteMsg"></div>
+    </div>
+
+    <div class="panel">
+      <div class="rowitem">
+        <div class="round">🔒</div>
+        <div class="grow"><b data-i18n="privRecords">Registros privados</b><div class="tag" data-i18n="privRecordsSub">Solo tú puedes consultarlos</div></div>
+        <span>✓</span>
+      </div>
+      <div class="rowitem">
+        <div class="round">✨</div>
+        <div class="grow"><b>Mi Día</b><div class="tag" data-i18n="versionTag">Edición Glass & Vibes</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button class="respiro-btn" id="respiroBtn" title="Necesito un respiro">🌬️</button>
+
+<div class="modal-overlay" id="respiroModal">
+  <div class="modal">
+    <h2 data-i18n="breathTitle">Un momento para ti</h2>
+    <p class="muted" data-i18n="breathSub">Vamos a respirar juntos. No tienes que hacer nada perfecto.</p>
+    <div class="breath-circle" id="breathCircle">Inhala</div>
+    <p class="muted" style="text-align:center;margin-top:8px" id="breathText">Respira despacio por la nariz...</p>
+    <button class="primary" id="closeRespiro" style="margin-top:18px" data-i18n="breathClose">Me siento un poco mejor</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="editDayModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="editModalDate" style="text-transform:capitalize;margin:0;font-size:16px">Fecha</h2>
+      <button class="close-x" id="closeEditModal">✕</button>
+    </div>
+    <p class="muted" data-i18n="editModalSub">Edita o completa el registro de este día.</p>
+
+    <div class="moods" id="editMoods" style="margin-top:12px">
+      <button class="mood" data-em="Muy bueno"><span class="e">🤩</span><b data-i18n="moodGreat">Muy bueno</b></button>
+      <button class="mood" data-em="Bueno"><span class="e">😊</span><b data-i18n="moodGood">Bueno</b></button>
+      <button class="mood" data-em="Regular"><span class="e">😐</span><b data-i18n="moodOk">Regular</b></button>
+      <button class="mood" data-em="Malo"><span class="e">😔</span><b data-i18n="moodBad">Malo</b></button>
+    </div>
+
+    <textarea id="editNote" data-i18n-placeholder="notePlaceholder" placeholder="¿Quieres contar algo de este día? (opcional)"></textarea>
+
+    <div style="margin-top:12px">
+      <h2 style="font-size:14px" data-i18n="gratTitle">Gratitud (opcional)</h2>
+      <div class="gratitude-list">
+        <input type="text" id="editGrat1" placeholder="1. ...">
+        <input type="text" id="editGrat2" placeholder="2. ...">
+        <input type="text" id="editGrat3" placeholder="3. ...">
+      </div>
+    </div>
+
+    <button class="primary" id="saveEditDay" data-i18n="saveChanges">Guardar cambios</button>
+    <button class="danger-btn hidden" id="deleteEditDay" data-i18n="deleteEntry">🗑️ Eliminar este registro</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="storyModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 style="margin:0;font-size:16px" data-i18n="storyModalTitle">Tu recuerdo ✨</h2>
+      <button class="close-x" id="closeStoryModal">✕</button>
+    </div>
+    <div class="story-card-preview" id="storyCardPreview"></div>
+    <button class="primary" id="copyStoryBtn" data-i18n="copyStoryBtn">📋 Copiar texto para compartir</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<nav class="nav">
+  <button class="active" data-tab="home"><span>🏠</span><span class="nav-txt" data-i18n="navHome" style="font-size:10px">Inicio</span></button>
+  <button data-tab="calendar"><span>📅</span><span class="nav-txt" data-i18n="navCal" style="font-size:10px">Calendario</span></button>
+  <button data-tab="achievements"><span>🏆</span><span class="nav-txt" data-i18n="navAch" style="font-size:10px">Logros</span></button>
+  <button data-tab="friends"><span>🫶</span><span class="nav-txt" data-i18n="navFriends" style="font-size:10px">Amigos</span></button>
+  <button data-tab="profile"><span>👤</span><span class="nav-txt" data-i18n="navProf" style="font-size:10px">Perfil</span></button>
+</nav>
+
+<script>
+const key = 'mi-dia-v4';
+const tasteKey = 'mi-dia-gustos';
+const themeKey = 'mi-dia-theme';
+const langKey = 'mi-dia-lang';
+
+let data = {};
+try { data = JSON.parse(localStorage.getItem(key) || '{}'); } catch(e) {}
+let tastes = [];
+try { tastes = JSON.parse(localStorage.getItem(tasteKey) || '[]'); } catch(e) {}
+
+let currentLang = localStorage.getItem(langKey) || 'es';
+let selected = '';
+let editSelected = '';
+let editingDateKey = '';
+let activeFilter = 'ALL';
+let selectedVibe = 'cheer';
+let currentStoryText = '';
+
+const today = new Date();
+let viewYear = today.getFullYear();
+let viewMonth = today.getMonth();
+
+const dateKey = d => [d.getFullYear(), String(d.getMonth()+1).padStart(2,'0'), String(d.getDate()).padStart(2,'0')].join('-');
+const todayKey = dateKey(today);
+
+const moodScore = { 'Muy bueno': 4, 'Bueno': 3, 'Regular': 2, 'Malo': 1 };
+const moodEmoji = { 'Muy bueno':'🤩', 'Bueno':'😊', 'Regular':'😐', 'Malo':'😔' };
+const moodColor = { 'Muy bueno':'#7c5dfa', 'Bueno':'#9b82ff', 'Regular':'#a3adc2', 'Malo':'#ff759f' };
+const moodGradient = {
+  'Muy bueno': 'linear-gradient(135deg, #7c5dfa, #ff6b9d)',
+  'Bueno': 'linear-gradient(135deg, #6366f1, #38bdf8)',
+  'Regular': 'linear-gradient(135deg, #64748b, #94a3b8)',
+  'Malo': 'linear-gradient(135deg, #4c1d95, #be185d)'
+};
+
+function launchConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const colors = ['#7c5dfa', '#ff6b9d', '#38bdf8', '#fbbf24', '#34d399', '#a78bfa'];
+  const pieces = [];
+  for (let i = 0; i < 85; i++) {
+    pieces.push({
+      x: canvas.width / 2 + (Math.random() - 0.5) * 140,
+      y: canvas.height * 0.55,
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() * -13) - 4,
+      size: Math.random() * 8 + 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rot: Math.random() * 360,
+      vRot: (Math.random() - 0.5) * 12
+    });
+  }
+
+  let frame = 0;
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.42;
+      p.rot += p.vRot;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI / 180);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.65);
+      ctx.restore();
+    });
+    frame++;
+    if (frame < 95) requestAnimationFrame(animate);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  animate();
+}
+
+const i18n = {
+  es: {
+    hello: '¡Hola! 💜',
+    quoteLabel: '✨ Una frase para ti hoy',
+    howWasDay: '¿Cómo ha sido tu día?',
+    noWrongAnswers: 'No hay respuestas buenas ni malas.',
+    moodGreat: 'Muy bueno',
+    moodGreatSub: 'Un día genial',
+    moodGood: 'Bueno',
+    moodGoodSub: 'Me he sentido bien',
+    moodOk: 'Regular',
+    moodOkSub: 'Un día normal',
+    moodBad: 'Malo',
+    moodBadSub: 'Hoy ha costado',
+    notePlaceholder: '¿Quieres contar algo de tu día? (opcional)',
+    gratTitle: 'Gratitud (opcional)',
+    gratSub: '¿Hay algo pequeño por lo que estés agradecido/a hoy?',
+    saveDay: 'Guardar mi día',
+    chooseMoodFirst: 'Elige primero cómo ha sido tu día.',
+    savedToast: '¡Día guardado! ✨💜',
+    savedBadToast: 'Guardado con mucho cariño 💜',
+    guidedTitle: 'Una pregunta suave:',
+    evolutionTitle: 'Tu evolución (últimos 7 días)',
+    summaryTitle: 'Resumen',
+    progressTitle: 'Tu progreso',
+    daysLogged: 'Días registrados',
+    streakDays: 'Días seguidos',
+    thisWeek: 'Esta semana',
+    thisMonth: 'Este mes',
+    totalMonth: 'Total este mes: {n} días registrados',
+    weekNotEnough: 'Aún no hay suficientes días esta semana.',
+    weekGood: 'Esta semana estás teniendo días bastante buenos. ¡Qué bien!',
+    weekBalanced: 'Semana equilibrada. Estás sosteniendo el ritmo.',
+    weekHard: 'Ha sido una semana exigente. Recuerda ser amable contigo.',
+    calTitle: 'Tu calendario 📅',
+    calSub: 'Toca cualquier día para ver o editar su registro.',
+    weekdays: ['L','M','X','J','V','S','D'],
+    searchTitle: 'Tus recuerdos 🔍',
+    searchSub: 'Filtra por estado de ánimo, busca palabras o abre una tarjeta Story.',
+    searchPlaceholder: 'Buscar palabras clave...',
+    filterAll: 'Todos',
+    noResults: 'No se encontraron registros con ese filtro.',
+    noNote: 'Sin nota escrita.',
+    storyBtn: '✨ Story',
+    storyModalTitle: 'Tu tarjeta de recuerdo ✨',
+    copyStoryBtn: '📋 Copiar texto para compartir',
+    copiedToast: '¡Recuerdo copiado al portapapeles! ✨',
+    achTitle: 'Tus logros 🏆',
+    achSub: 'Pequeños pasos que merecen celebrarse.',
+    friendsTitle: 'Amigos 🫶',
+    friendsSub: 'Este apartado es opcional. Tus registros seguirán siendo privados.',
+    personalSpace: 'Tu espacio personal',
+    personalSpaceDesc: 'Nadie puede ver tus días ni tu estado de ánimo. Más adelante podrás añadir amigos si te apetece.',
+    privacyOn: 'Privacidad activada',
+    profTitle: 'Mi perfil 👤',
+    profSub: 'Tu cuenta, idioma y copia de seguridad.',
+    langTitle: 'Idioma / Language 🌐',
+    langSub: 'Elige el idioma de la aplicación.',
+    backupTitle: 'Copia de seguridad 💾',
+    backupSub: 'Guarda tus registros en un archivo para no perderlos nunca o pasarlos a otro dispositivo.',
+    exportBtn: '⬇️ Exportar JSON',
+    importBtn: '⬆️ Importar JSON',
+    exportSuccess: '¡Copia de seguridad descargada! 💾',
+    importSuccess: '¡Registros importados con éxito! 💜',
+    importError: 'Archivo no válido. Asegúrate de elegir un JSON de Mi Día.',
+    tastesTitle: 'Mis gustos 💜',
+    tastesSub: 'Elige lo que te gusta para personalizar tus recomendaciones musicales.',
+    tasteMusic: 'Música',
+    tasteGames: 'Videojuegos',
+    tasteAnimals: 'Animales',
+    tasteSports: 'Deporte',
+    tasteTravel: 'Viajes',
+    tasteMovies: 'Películas y series',
+    tasteNature: 'Naturaleza',
+    tasteCooking: 'Cocina',
+    saveTastes: 'Guardar mis gustos',
+    tastesSaved: '¡Tus gustos se han guardado! 💜',
+    privRecords: 'Registros privados',
+    privRecordsSub: 'Solo tú puedes consultarlos',
+    versionTag: 'Edición Glass & Vibes',
+    breathTitle: 'Un momento para ti',
+    breathSub: 'Vamos a respirar juntos. No tienes que hacer nada perfecto.',
+    inhale: 'Inhala',
+    inhaleText: 'Respira despacio por la nariz...',
+    exhale: 'Exhala',
+    exhaleText: 'Suelta el aire con calma...',
+    breathClose: 'Me siento un poco mejor',
+    editModalSub: 'Edita o completa el registro de este día.',
+    saveChanges: 'Guardar cambios',
+    deleteEntry: '🗑️ Eliminar este registro',
+    deletedToast: 'Registro eliminado.',
+    futureDayToast: 'Aún no puedes registrar días futuros 🌱',
+    navHome: 'Inicio',
+    navCal: 'Calendario',
+    navAch: 'Logros',
+    navFriends: 'Amigos',
+    navProf: 'Perfil',
+    musicSelectorLabel: '🎧 ¿Qué tipo de música te apetece ahora?',
+    vibeCheer: '⚡ Subir el ánimo',
+    vibeCalm: '🌿 Relajarme',
+    vibeFocus: '🎧 Concentrarme',
+    vibeParty: '🎉 Celebrar',
+    diffBtn: '🌬️ Necesito un respiro ahora',
+    quotesPositive: [
+      'Cada pequeño paso cuenta.',
+      'Hoy puede ser un buen comienzo.',
+      'Estás construyendo algo valioso, aunque no siempre se vea.',
+      'Tu constancia es más poderosa de lo que crees.',
+      'Mereces reconocer lo que ya has conseguido.'
+    ],
+    quotesGentle: [
+      'No tienes que estar bien todo el tiempo.',
+      'Está bien tomarte las cosas con calma.',
+      'Hoy solo tienes que cuidar de ti un poquito.',
+      'Los días difíciles también forman parte del camino.',
+      'No estás solo/a en esto. Un paso a la vez.'
+    ],
+    quotesNeutral: [
+      'Un día a la vez. Lo estás haciendo lo mejor que puedes.',
+      'Confía en tu ritmo: vas avanzando.',
+      'No tienes que hacerlo todo, solo dar el siguiente paso.',
+      'Está bien que hoy sea un día normal.',
+      'Pequeños gestos de cuidado también cuentan.'
+    ],
+    guidedQuestions: {
+      'Muy bueno': ['¿Qué ha hecho que hoy sea tan especial?', '¿Hay algo de este día que quieras recordar mañana?'],
+      'Bueno': ['¿Qué momento del día te ha sentado mejor?', '¿Hay algo pequeño que haya contribuido a que te sientas bien?'],
+      'Regular': ['¿Hay algo que te haya pesado un poco hoy?', '¿Qué necesitarías para que mañana se sienta un poco más ligero?'],
+      'Malo': ['¿Qué es lo que más te ha costado hoy?', '¿Hay algo pequeño que puedas hacer ahora mismo para cuidarte un poco?']
+    },
+    recs: {
+      'Muy bueno': { title: '¡Qué buena energía llevas hoy! ✨', activity: 'Aprovecha este impulso: sal a caminar, llama a alguien especial o regálate un momento para ti.' },
+      'Bueno': { title: 'Sigue cuidando este buen día 😊', activity: 'Haz algo pequeño que te haga sonreír: tu música favorita, un paseo corto o un rato de descanso.' },
+      'Regular': { title: 'Vamos con calma, paso a paso 🌤️', activity: 'Prueba a desconectar 10 minutos de las pantallas o sal a tomar un poco de aire fresco.' },
+      'Malo': { title: 'Hoy toca tratarte con mucho cariño 💜', activity: 'No tienes que arreglar nada ahora mismo. Respira hondo, ponte música que te abrace o descansa.' }
+    },
+    badges: [
+      ['🌱', 'Primer paso', 'Registra tu primer día'],
+      ['🌼', 'Una semana', 'Registra 7 días'],
+      ['🌈', 'Constancia', 'Registra 30 días'],
+      ['🔥', 'Racha de 3', '3 días seguidos'],
+      ['💪', 'Racha de 7', '7 días seguidos'],
+      ['🙏', 'Gratitud', 'Escribe gratitud 3 días']
+    ]
+  },
+  en: {
+    hello: 'Hello! 💜',
+    quoteLabel: '✨ A quote for you today',
+    howWasDay: 'How was your day?',
+    noWrongAnswers: 'There are no right or wrong answers.',
+    moodGreat: 'Great',
+    moodGreatSub: 'An awesome day',
+    moodGood: 'Good',
+    moodGoodSub: 'I felt good',
+    moodOk: 'Okay',
+    moodOkSub: 'A normal day',
+    moodBad: 'Tough',
+    moodBadSub: 'Today was hard',
+    notePlaceholder: 'Want to write anything about your day? (optional)',
+    gratTitle: 'Gratitude (optional)',
+    gratSub: 'Is there something small you are grateful for today?',
+    saveDay: 'Save my day',
+    chooseMoodFirst: 'Please choose how your day was first.',
+    savedToast: 'Day saved! ✨💜',
+    savedBadToast: 'Saved with care 💜',
+    guidedTitle: 'A gentle question:',
+    evolutionTitle: 'Your mood trend (last 7 days)',
+    summaryTitle: 'Summary',
+    progressTitle: 'Your progress',
+    daysLogged: 'Days logged',
+    streakDays: 'Day streak',
+    thisWeek: 'This week',
+    thisMonth: 'This month',
+    totalMonth: 'Total this month: {n} days logged',
+    weekNotEnough: 'Not enough logged days this week yet.',
+    weekGood: 'You are having pretty good days this week. Awesome!',
+    weekBalanced: 'Balanced week. You are keeping a steady pace.',
+    weekHard: 'It has been a demanding week. Remember to be kind to yourself.',
+    calTitle: 'Your calendar 📅',
+    calSub: 'Tap any day to view or edit its entry.',
+    weekdays: ['M','T','W','T','F','S','S'],
+    searchTitle: 'Your memories 🔍',
+    searchSub: 'Filter by mood, search keywords, or open a Story card.',
+    searchPlaceholder: 'Search keywords...',
+    filterAll: 'All',
+    noResults: 'No entries found matching this filter.',
+    noNote: 'No written note.',
+    storyBtn: '✨ Story',
+    storyModalTitle: 'Your memory card ✨',
+    copyStoryBtn: '📋 Copy text to share',
+    copiedToast: 'Memory copied to clipboard! ✨',
+    achTitle: 'Your achievements 🏆',
+    achSub: 'Small steps worth celebrating.',
+    friendsTitle: 'Friends 🫶',
+    friendsSub: 'This section is optional. Your entries remain completely private.',
+    personalSpace: 'Your personal space',
+    personalSpaceDesc: 'No one can see your days or your mood. You will be able to add friends later if you wish.',
+    privacyOn: 'Privacy enabled',
+    profTitle: 'My profile 👤',
+    profSub: 'Your account, language, and backup.',
+    langTitle: 'Language / Idioma 🌐',
+    langSub: 'Choose the application language.',
+    backupTitle: 'Backup & Restore 💾',
+    backupSub: 'Save your entries to a file so you never lose them or to move them to another device.',
+    exportBtn: '⬇️ Export JSON',
+    importBtn: '⬆️ Import JSON',
+    exportSuccess: 'Backup file downloaded! 💾',
+    importSuccess: 'Entries imported successfully! 💜',
+    importError: 'Invalid file. Please select a valid Mi Día JSON backup.',
+    tastesTitle: 'My interests 💜',
+    tastesSub: 'Select what you enjoy to personalize your music recommendations.',
+    tasteMusic: 'Music',
+    tasteGames: 'Video games',
+    tasteAnimals: 'Animals',
+    tasteSports: 'Sports',
+    tasteTravel: 'Travel',
+    tasteMovies: 'Movies & series',
+    tasteNature: 'Nature',
+    tasteCooking: 'Cooking',
+    saveTastes: 'Save my interests',
+    tastesSaved: 'Your interests have been saved! 💜',
+    privRecords: 'Private entries',
+    privRecordsSub: 'Only you can view them',
+    versionTag: 'Glass & Vibes Edition',
+    breathTitle: 'A moment for you',
+    breathSub: 'Let’s breathe together. You don’t have to do anything perfectly.',
+    inhale: 'Inhale',
+    inhaleText: 'Breathe in slowly through your nose...',
+    exhale: 'Exhale',
+    exhaleText: 'Let the air out gently...',
+    breathClose: 'I feel a little better',
+    editModalSub: 'Edit or complete the entry for this day.',
+    saveChanges: 'Save changes',
+    deleteEntry: '🗑️ Delete this entry',
+    deletedToast: 'Entry deleted.',
+    futureDayToast: 'You cannot log future days yet 🌱',
+    navHome: 'Home',
+    navCal: 'Calendar',
+    navAch: 'Awards',
+    navFriends: 'Friends',
+    navProf: 'Profile',
+    musicSelectorLabel: '🎧 What music vibe do you feel like right now?',
+    vibeCheer: '⚡ Cheer me up',
+    vibeCalm: '🌿 Calm & Relax',
+    vibeFocus: '🎧 Chill Focus',
+    vibeParty: '🎉 Celebrate',
+    diffBtn: '🌬️ I need a breather now',
+    quotesPositive: [
+      'Every small step counts.',
+      'Today can be a great new beginning.',
+      'You are building something valuable, even when it is not always visible.',
+      'Your consistency is more powerful than you think.',
+      'You deserve to recognize what you have already achieved.'
+    ],
+    quotesGentle: [
+      'You do not have to be okay all the time.',
+      'It is okay to take things slowly.',
+      'Today you just need to take care of yourself a little bit.',
+      'Difficult days are also part of the journey.',
+      'You are not alone in this. One step at a time.'
+    ],
+    quotesNeutral: [
+      'One day at a time. You are doing the best you can.',
+      'Trust your pace: you are moving forward.',
+      'You do not have to do everything, just take the next step.',
+      'It is okay if today is just a normal day.',
+      'Small gestures of self-care count too.'
+    ],
+    guidedQuestions: {
+      'Muy bueno': ['What made today so special?', 'Is there something from today you want to remember tomorrow?'],
+      'Bueno': ['Which moment of the day felt best?', 'Did something small help you feel good today?'],
+      'Regular': ['Did something feel a bit heavy today?', 'What would you need for tomorrow to feel a little lighter?'],
+      'Malo': ['What was the hardest part of today?', 'Is there something small you can do right now to care for yourself?']
+    },
+    recs: {
+      'Muy bueno': { title: 'What great energy today! ✨', activity: 'Make the most of this momentum: go for a walk, call someone special, or treat yourself.' },
+      'Bueno': { title: 'Keep nurturing this good day 😊', activity: 'Do something small that makes you smile: your favorite music, a short walk, or a relaxing break.' },
+      'Regular': { title: 'Taking it easy, step by step 🌤️', activity: 'Try disconnecting from screens for 10 minutes or step outside for some fresh air.' },
+      'Malo': { title: 'Today is about gentle self-care 💜', activity: 'You do not have to fix anything right now. Breathe deeply, put on comforting music, or rest.' }
+    },
+    badges: [
+      ['🌱', 'First step', 'Log your first day'],
+      ['🌼', 'One week', 'Log 7 days'],
+      ['🌈', 'Consistency', 'Log 30 days'],
+      ['🔥', '3-day streak', '3 days in a row'],
+      ['💪', '7-day streak', '7 days in a row'],
+      ['🙏', 'Gratitude', 'Write gratitude for 3 days']
+    ]
+  }
+};
+
+function t(k) {
+  return i18n[currentLang][k] || i18n['es'][k] || k;
+}
+
+function getMoodLabel(internalMood) {
+  const map = { 'Muy bueno': 'moodGreat', 'Bueno': 'moodGood', 'Regular': 'moodOk', 'Malo': 'moodBad' };
+  return t(map[internalMood] || internalMood);
+}
+
+function applyLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem(langKey, lang);
+  document.documentElement.lang = lang;
+  document.getElementById('langToggle').textContent = lang.toUpperCase();
+  document.getElementById('langSelect').value = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (i18n[lang][k]) el.textContent = i18n[lang][k];
+  });
+
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const k = el.getAttribute('data-i18n-placeholder');
+    if (i18n[lang][k]) el.placeholder = i18n[lang][k];
+  });
+
+  const locale = lang === 'en' ? 'en-US' : 'es-ES';
+  document.getElementById('date').textContent = new Intl.DateTimeFormat(locale, {
+    weekday: 'long', day: 'numeric', month: 'long'
+  }).format(today);
+
+  document.getElementById('dailyQuote').textContent = getPersonalizedQuote();
+  if (selected) {
+    updateGuidedQuestion(selected);
+    if (data[todayKey]) renderRecommendationCard(selected);
+  }
+  render();
+}
+
+document.getElementById('langToggle').onclick = () => {
+  applyLanguage(currentLang === 'es' ? 'en' : 'es');
+};
+document.getElementById('langSelect').onchange = (e) => {
+  applyLanguage(e.target.value);
+};
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('themeToggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem(themeKey, theme);
+}
+applyTheme(localStorage.getItem(themeKey) || 'light');
+document.getElementById('themeToggle').onclick = () => {
+  const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+};
+
+function getPersonalizedQuote() {
+  const keys = Object.keys(data).sort().slice(-7);
+  const dict = i18n[currentLang];
+  if (keys.length === 0) return dict.quotesPositive[0];
+  let score = 0;
+  keys.forEach(k => {
+    const m = data[k].m;
+    if (m === 'Muy bueno') score += 2;
+    else if (m === 'Bueno') score += 1;
+    else if (m === 'Malo') score -= 2;
+  });
+  const avg = score / keys.length;
+  let pool = dict.quotesNeutral;
+  if (avg >= 1) pool = dict.quotesPositive;
+  else if (avg <= -0.5) pool = dict.quotesGentle;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function updateGuidedQuestion(mood) {
+  const box = document.getElementById('guidedBox');
+  const qs = i18n[currentLang].guidedQuestions[mood];
+  const q = qs[Math.floor(Math.random() * qs.length)];
+  box.innerHTML = `<strong>${t('guidedTitle')}</strong>${q}`;
+  box.classList.remove('hidden');
+}
+
+function loadTodayIntoForm() {
+  if (data[todayKey]) {
+    const entry = data[todayKey];
+    selected = entry.m;
+    document.querySelectorAll('#homeMoods .mood[data-m]').forEach(x => {
+      x.classList.toggle('selected', x.dataset.m === selected);
+    });
+    document.getElementById('note').value = entry.n || '';
+    document.getElementById('grat1').value = (entry.g && entry.g[0]) || '';
+    document.getElementById('grat2').value = (entry.g && entry.g[1]) || '';
+    document.getElementById('grat3').value = (entry.g && entry.g[2]) || '';
+    updateGuidedQuestion(selected);
+    selectedVibe = (selected === 'Malo') ? 'cheer' : (selected === 'Regular' ? 'calm' : 'party');
+    renderRecommendationCard(selected);
+  }
+}
+
+document.querySelectorAll('#homeMoods .mood[data-m]').forEach(b => {
+  b.onclick = () => {
+    selected = b.dataset.m;
+    document.querySelectorAll('#homeMoods .mood[data-m]').forEach(x => x.classList.toggle('selected', x === b));
+    updateGuidedQuestion(selected);
+  };
+});
+
+function showToast(text) {
+  const toastEl = document.getElementById('toast');
+  toastEl.textContent = text;
+  toastEl.classList.add('show');
+  setTimeout(() => toastEl.classList.remove('show'), 3200);
+}
+
+document.getElementById('save').onclick = () => {
+  if (!selected) {
+    document.getElementById('msg').textContent = t('chooseMoodFirst');
+    return;
+  }
+
+  const grat = [
+    document.getElementById('grat1').value.trim(),
+    document.getElementById('grat2').value.trim(),
+    document.getElementById('grat3').value.trim()
+  ].filter(Boolean);
+
+  data[todayKey] = {
+    m: selected,
+    e: moodEmoji[selected],
+    n: document.getElementById('note').value,
+    g: grat
+  };
+  localStorage.setItem(key, JSON.stringify(data));
+  render();
+
+  if (selected === 'Muy bueno' || selected === 'Bueno') {
+    launchConfetti();
+  }
+
+  showToast(selected === 'Malo' ? t('savedBadToast') : t('savedToast'));
+
+  selectedVibe = (selected === 'Malo') ? 'cheer' : (selected === 'Regular' ? 'calm' : 'party');
+  renderRecommendationCard(selected);
+
+  document.getElementById('msg').textContent = '';
+};
+
+function getMusicSearchQuery(vibe) {
+  const baseTastes = tastes.length ? tastes.slice(0, 2).join(' ') : (currentLang === 'en' ? 'music' : 'musica');
+  const vibeQueries = {
+    cheer: currentLang === 'en' ? 'uplifting happy feel good songs' : 'musica alegre positiva subir el animo',
+    calm: currentLang === 'en' ? 'relaxing calm peaceful ambient' : 'musica relajante tranquila paz',
+    focus: currentLang === 'en' ? 'lofi chill beats focus' : 'musica lofi chill concentrarse',
+    party: currentLang === 'en' ? 'upbeat energetic hits' : 'exitos alegres energia positiva'
+  };
+  return `${baseTastes} ${vibeQueries[vibe] || vibeQueries.cheer}`;
+}
+
+function setMusicVibe(vibe, mood) {
+  selectedVibe = vibe;
+  renderRecommendationCard(mood);
+}
+
+function renderRecommendationCard(m) {
+  const r = i18n[currentLang].recs[m];
+  const q = getMusicSearchQuery(selectedVibe);
+  const isDifficult = (m === 'Malo');
+
+  const extraBreathBtn = isDifficult
+    ? `<button class="secondary-btn" style="margin-top:12px" onclick="document.getElementById('respiroBtn').click()">${t('diffBtn')}</button>`
+    : '';
+
+  document.getElementById('recommendation').innerHTML = `
+    <div class="panel" style="${isDifficult ? 'border-color: var(--accent);' : ''}">
+      <h2>${r.title}</h2>
+      <p class="muted" style="margin-top:6px">🌱 ${r.activity}</p>
+
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line)">
+        <strong style="font-size:13px;display:block">${t('musicSelectorLabel')}</strong>
+        <div class="vibe-pills">
+          <button class="vibe-pill ${selectedVibe === 'cheer' ? 'active' : ''}" onclick="setMusicVibe('cheer', '${m}')">${t('vibeCheer')}</button>
+          <button class="vibe-pill ${selectedVibe === 'calm' ? 'active' : ''}" onclick="setMusicVibe('calm', '${m}')">${t('vibeCalm')}</button>
+          <button class="vibe-pill ${selectedVibe === 'focus' ? 'active' : ''}" onclick="setMusicVibe('focus', '${m}')">${t('vibeFocus')}</button>
+          <button class="vibe-pill ${selectedVibe === 'party' ? 'active' : ''}" onclick="setMusicVibe('party', '${m}')">${t('vibeParty')}</button>
+        </div>
+
+        <div class="music-links">
+          <a class="music-btn btn-yt" target="_blank" rel="noopener"
+             href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}">▶ YouTube</a>
+          <a class="music-btn btn-sp" target="_blank" rel="noopener"
+             href="https://open.spotify.com/search/${encodeURIComponent(q)}">🎧 Spotify</a>
+        </div>
+      </div>
+      ${extraBreathBtn}
+    </div>`;
+}
+
+let breathInterval = null;
+document.getElementById('respiroBtn').onclick = () => {
+  document.getElementById('respiroModal').classList.add('show');
+  startBreathing();
+};
+document.getElementById('closeRespiro').onclick = () => {
+  document.getElementById('respiroModal').classList.remove('show');
+  stopBreathing();
+};
+function startBreathing() {
+  const circle = document.getElementById('breathCircle');
+  const text = document.getElementById('breathText');
+  let phase = 0;
+  function cycle() {
+    if (phase === 0) {
+      circle.textContent = t('inhale');
+      text.textContent = t('inhaleText');
+      circle.classList.add('inhale');
+      circle.classList.remove('exhale');
+      phase = 1;
+    } else {
+      circle.textContent = t('exhale');
+      text.textContent = t('exhaleText');
+      circle.classList.remove('inhale');
+      circle.classList.add('exhale');
+      phase = 0;
+    }
+  }
+  cycle();
+  breathInterval = setInterval(cycle, 4000);
+}
+function stopBreathing() {
+  clearInterval(breathInterval);
+  const circle = document.getElementById('breathCircle');
+  circle.classList.remove('inhale', 'exhale');
+  circle.textContent = t('inhale');
+}
+
+function openStoryCard(e, dKey) {
+  e.stopPropagation();
+  const item = data[dKey];
+  if (!item) return;
+
+  const [y, m, d] = dKey.split('-').map(Number);
+  const locale = currentLang === 'en' ? 'en-US' : 'es-ES';
+  const dateStr = new Intl.DateTimeFormat(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(y, m - 1, d));
+
+  const bg = moodGradient[item.m] || moodGradient['Bueno'];
+  const noteTxt = item.n ? `"${item.n}"` : getMoodLabel(item.m);
+  const gratTxt = (item.g && item.g.length) ? `🙏 ${item.g.join(' • ')}` : '';
+
+  document.getElementById('storyCardPreview').style.background = bg;
+  document.getElementById('storyCardPreview').innerHTML = `
+    <div style="font-size:12px;font-weight:700;opacity:0.9;text-transform:capitalize">${dateStr}</div>
+    <span class="story-emoji-big">${item.e}</span>
+    <div style="font-size:20px;font-weight:800">${getMoodLabel(item.m)}</div>
+    <div class="story-quote-text">${noteTxt}</div>
+    ${gratTxt ? `<div class="story-grat-box">${gratTxt}</div>` : ''}
+    <div class="story-brand">mi día. ✨</div>
+  `;
+
+  currentStoryText = `📅 ${dateStr}\n${item.e} ${getMoodLabel(item.m)}\n${item.n ? '📝 ' + item.n + '\n' : ''}${gratTxt ? gratTxt + '\n' : ''}— Mi Día 💜`;
+  document.getElementById('storyModal').classList.add('show');
+}
+
+document.getElementById('closeStoryModal').onclick = () => {
+  document.getElementById('storyModal').classList.remove('show');
+};
+
+document.getElementById('copyStoryBtn').onclick = () => {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(currentStoryText).then(() => showToast(t('copiedToast')));
+  }
+};
+
+function openEditModal(dKey) {
+  editingDateKey = dKey;
+  const [y, m, d] = dKey.split('-').map(Number);
+  const dateObj = new Date(y, m - 1, d);
+  const locale = currentLang === 'en' ? 'en-US' : 'es-ES';
+
+  document.getElementById('editModalDate').textContent = new Intl.DateTimeFormat(locale, {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  }).format(dateObj);
+
+  const entry = data[dKey];
+  editSelected = entry ? entry.m : '';
+
+  document.querySelectorAll('#editMoods .mood').forEach(b => {
+    b.classList.toggle('selected', b.dataset.em === editSelected);
+  });
+
+  document.getElementById('editNote').value = entry ? (entry.n || '') : '';
+  document.getElementById('editGrat1').value = (entry && entry.g && entry.g[0]) || '';
+  document.getElementById('editGrat2').value = (entry && entry.g && entry.g[1]) || '';
+  document.getElementById('editGrat3').value = (entry && entry.g && entry.g[2]) || '';
+
+  const delBtn = document.getElementById('deleteEditDay');
+  if (entry) delBtn.classList.remove('hidden');
+  else delBtn.classList.add('hidden');
+
+  document.getElementById('editDayModal').classList.add('show');
+}
+
+document.querySelectorAll('#editMoods .mood').forEach(b => {
+  b.onclick = () => {
+    editSelected = b.dataset.em;
+    document.querySelectorAll('#editMoods .mood').forEach(x => x.classList.toggle('selected', x === b));
+  };
+});
+
+document.getElementById('closeEditModal').onclick = () => {
+  document.getElementById('editDayModal').classList.remove('show');
+};
+
+document.getElementById('saveEditDay').onclick = () => {
+  if (!editSelected) {
+    showToast(t('chooseMoodFirst'));
+    return;
+  }
+  const grat = [
+    document.getElementById('editGrat1').value.trim(),
+    document.getElementById('editGrat2').value.trim(),
+    document.getElementById('editGrat3').value.trim()
+  ].filter(Boolean);
+
+  data[editingDateKey] = {
+    m: editSelected,
+    e: moodEmoji[editSelected],
+    n: document.getElementById('editNote').value,
+    g: grat
+  };
+  localStorage.setItem(key, JSON.stringify(data));
+  if (editingDateKey === todayKey) loadTodayIntoForm();
+  document.getElementById('editDayModal').classList.remove('show');
+  render();
+  showToast(t('savedToast'));
+};
+
+document.getElementById('deleteEditDay').onclick = () => {
+  delete data[editingDateKey];
+  localStorage.setItem(key, JSON.stringify(data));
+  if (editingDateKey === todayKey) {
+    selected = '';
+    document.querySelectorAll('#homeMoods .mood').forEach(x => x.classList.remove('selected'));
+    document.getElementById('note').value = '';
+    document.getElementById('grat1').value = '';
+    document.getElementById('grat2').value = '';
+    document.getElementById('grat3').value = '';
+    document.getElementById('guidedBox').classList.add('hidden');
+    document.getElementById('recommendation').innerHTML = '';
+  }
+  document.getElementById('editDayModal').classList.remove('show');
+  render();
+  showToast(t('deletedToast'));
+};
+
+document.getElementById('exportBtn').onclick = () => {
+  const backupObj = {
+    app: 'Mi Dia',
+    exportedAt: new Date().toISOString(),
+    entries: data,
+    tastes: tastes
+  };
+  const blob = new Blob([JSON.stringify(backupObj, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `mi-dia-backup-${todayKey}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast(t('exportSuccess'));
+};
+
+document.getElementById('importBtn').onclick = () => {
+  document.getElementById('importFile').click();
+};
+
+document.getElementById('importFile').onchange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    try {
+      const parsed = JSON.parse(ev.target.result);
+      if (parsed && typeof parsed.entries === 'object') {
+        data = { ...data, ...parsed.entries };
+        localStorage.setItem(key, JSON.stringify(data));
+        if (Array.isArray(parsed.tastes)) {
+          tastes = parsed.tastes;
+          localStorage.setItem(tasteKey, JSON.stringify(tastes));
+          document.querySelectorAll('#tasteChoices input').forEach(c => c.checked = tastes.includes(c.value));
+        }
+        loadTodayIntoForm();
+        render();
+        showToast(t('importSuccess'));
+      } else {
+        showToast(t('importError'));
+      }
+    } catch (err) {
+      showToast(t('importError'));
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
+};
+
+document.getElementById('searchInput').oninput = () => renderHistory();
+
+document.querySelectorAll('#filterChips .chip').forEach(chip => {
+  chip.onclick = () => {
+    document.querySelectorAll('#filterChips .chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    activeFilter = chip.dataset.filter;
+    renderHistory();
+  };
+});
+
+function renderHistory() {
+  const query = document.getElementById('searchInput').value.trim().toLowerCase();
+  const listEl = document.getElementById('historyList');
+  const locale = currentLang === 'en' ? 'en-US' : 'es-ES';
+
+  const sortedKeys = Object.keys(data).sort().reverse();
+  const filtered = sortedKeys.filter(k => {
+    const item = data[k];
+    if (activeFilter !== 'ALL' && item.m !== activeFilter) return false;
+    if (query) {
+      const inNote = (item.n || '').toLowerCase().includes(query);
+      const inGrat = (item.g || []).some(g => g.toLowerCase().includes(query));
+      const inDate = k.includes(query);
+      return inNote || inGrat || inDate;
+    }
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    listEl.innerHTML = `<p class="muted" style="text-align:center;margin-top:16px">${t('noResults')}</p>`;
+    return;
+  }
+
+  listEl.innerHTML = filtered.slice(0, 25).map(k => {
+    const item = data[k];
+    const [y, m, d] = k.split('-').map(Number);
+    const dateStr = new Intl.DateTimeFormat(locale, { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(y, m - 1, d));
+    const gratHtml = (item.g && item.g.length)
+      ? `<div class="history-grat">🙏 ${item.g.join(' · ')}</div>`
+      : '';
+    return `
+      <div class="history-card" onclick="openEditModal('${k}')">
+        <div class="history-top">
+          <span class="history-date">${dateStr}</span>
+          <div class="history-actions-mini">
+            <button class="story-btn" onclick="openStoryCard(event, '${k}')">${t('storyBtn')}</button>
+            <span class="pill">${item.e} ${getMoodLabel(item.m)}</span>
+          </div>
+        </div>
+        <div class="history-note">${item.n ? item.n : `<span class="muted">${t('noNote')}</span>`}</div>
+        ${gratHtml}
+      </div>
+    `;
+  }).join('');
+}
+
+document.querySelectorAll('#tasteChoices input').forEach(c => c.checked = tastes.includes(c.value));
+document.getElementById('saveTastes').onclick = () => {
+  tastes = [...document.querySelectorAll('#tasteChoices input:checked')].map(c => c.value);
+  localStorage.setItem(tasteKey, JSON.stringify(tastes));
+  document.getElementById('tasteMsg').textContent = t('tastesSaved');
+  if (selected && data[todayKey]) renderRecommendationCard(selected);
+  setTimeout(() => document.getElementById('tasteMsg').textContent = '', 2500);
+};
+
+document.getElementById('prevMonth').onclick = () => {
+  viewMonth--;
+  if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+  renderCalendar();
+};
+document.getElementById('nextMonth').onclick = () => {
+  viewMonth++;
+  if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+  renderCalendar();
+};
+
+function renderCalendar() {
+  const cal = document.getElementById('cal');
+  const locale = currentLang === 'en' ? 'en-US' : 'es-ES';
+  cal.innerHTML = '';
+
+  i18n[currentLang].weekdays.forEach(x => {
+    const e = document.createElement('div');
+    e.className = 'calday';
+    e.textContent = x;
+    cal.append(e);
+  });
+
+  const first = new Date(viewYear, viewMonth, 1);
+  const offset = (first.getDay() + 6) % 7;
+  for (let i = 0; i < offset; i++) cal.append(document.createElement('div'));
+
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  document.getElementById('month').textContent = new Intl.DateTimeFormat(locale, {
+    month: 'long', year: 'numeric'
+  }).format(new Date(viewYear, viewMonth, 1));
+
+  for (let n = 1; n <= daysInMonth; n++) {
+    const dd = new Date(viewYear, viewMonth, n);
+    const k = dateKey(dd);
+    const isFuture = dd > today && k !== todayKey;
+    const hasEntry = Boolean(data[k]);
+    const e = document.createElement('div');
+    e.className = 'cell' + (k === todayKey ? ' today' : '') + (isFuture ? ' future' : '') + (hasEntry ? ' has-entry' : '');
+    e.textContent = data[k]?.e || n;
+    e.onclick = () => {
+      if (isFuture) {
+        showToast(t('futureDayToast'));
+      } else {
+        openEditModal(k);
+      }
+    };
+    cal.append(e);
+  }
+}
+
+function renderChartAndSummary() {
+  const locale = currentLang === 'en' ? 'en-US' : 'es-ES';
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(today);
+    d.setDate(d.getDate() - i);
+    const k = dateKey(d);
+    days.push({
+      key: k,
+      label: new Intl.DateTimeFormat(locale, { weekday: 'short' }).format(d).slice(0, 2),
+      mood: data[k]?.m || null,
+      score: data[k] ? moodScore[data[k].m] : 0
+    });
+  }
+
+  const chart = document.getElementById('moodChart');
+  chart.innerHTML = days.map(d => {
+    const h = d.score ? (d.score / 4 * 90) : 8;
+    const color = d.mood ? moodColor[d.mood] : 'var(--line)';
+    return `<div class="bar-wrap">
+      <div class="bar" style="height:${h}px;background:${color}"></div>
+      <div class="bar-label">${d.label}</div>
+    </div>`;
+  }).join('');
+
+  const weekMoods = days.filter(d => d.mood);
+  const counts = { 'Muy bueno': 0, 'Bueno': 0, 'Regular': 0, 'Malo': 0 };
+  weekMoods.forEach(d => counts[d.mood]++);
+
+  const monthKeys = Object.keys(data).filter(k => k.startsWith(todayKey.slice(0, 7)));
+  const monthCounts = { 'Muy bueno': 0, 'Bueno': 0, 'Regular': 0, 'Malo': 0 };
+  monthKeys.forEach(k => monthCounts[data[k].m]++);
+
+  let weekMsg = t('weekNotEnough');
+  if (weekMoods.length >= 3) {
+    const avg = weekMoods.reduce((a, b) => a + b.score, 0) / weekMoods.length;
+    if (avg >= 3.2) weekMsg = t('weekGood');
+    else if (avg >= 2.3) weekMsg = t('weekBalanced');
+    else weekMsg = t('weekHard');
+  }
+
+  document.getElementById('summaryContent').innerHTML = `
+    <p class="muted" style="margin-bottom:10px">${weekMsg}</p>
+    <h2 style="font-size:14px;margin-bottom:6px">${t('thisWeek')}</h2>
+    <div class="summary-grid">
+      <div class="summary-item"><strong>${counts['Muy bueno']}</strong><span>🤩 ${t('moodGreat')}</span></div>
+      <div class="summary-item"><strong>${counts['Bueno']}</strong><span>😊 ${t('moodGood')}</span></div>
+      <div class="summary-item"><strong>${counts['Regular']}</strong><span>😐 ${t('moodOk')}</span></div>
+      <div class="summary-item"><strong>${counts['Malo']}</strong><span>😔 ${t('moodBad')}</span></div>
+    </div>
+    <h2 style="font-size:14px;margin:16px 0 6px">${t('thisMonth')}</h2>
+    <div class="summary-grid">
+      <div class="summary-item"><strong>${monthCounts['Muy bueno']}</strong><span>🤩</span></div>
+      <div class="summary-item"><strong>${monthCounts['Bueno']}</strong><span>😊</span></div>
+      <div class="summary-item"><strong>${monthCounts['Regular']}</strong><span>😐</span></div>
+      <div class="summary-item"><strong>${monthCounts['Malo']}</strong><span>😔</span></div>
+    </div>
+    <p class="muted" style="margin-top:12px;font-size:12px">${t('totalMonth').replace('{n}', monthKeys.length)}</p>
+  `;
+}
+
+function render() {
+  const keys = Object.keys(data).sort();
+  document.getElementById('total').textContent = keys.length;
+
+  let streak = 0;
+  let d = new Date(today);
+  while (data[dateKey(d)]) {
+    streak++;
+    d.setDate(d.getDate() - 1);
+  }
+  document.getElementById('streak').textContent = streak + ' 🔥';
+
+  renderCalendar();
+  renderHistory();
+
+  const badges = document.getElementById('badges');
+  const bDict = i18n[currentLang].badges;
+  const conditions = [
+    keys.length >= 1,
+    keys.length >= 7,
+    keys.length >= 30,
+    streak >= 3,
+    streak >= 7,
+    keys.filter(k => data[k].g && data[k].g.length).length >= 3
+  ];
+  badges.innerHTML = bDict.map((x, idx) => `
+    <div class="rowitem">
+      <div class="round">${x[0]}</div>
+      <div class="grow"><b>${x[1]}</b><div class="tag">${x[2]}</div></div>
+      <span>${conditions[idx] ? '✅' : '🔒'}</span>
+    </div>`).join('');
+
+  renderChartAndSummary();
+}
+
+function initNav() {
+  document.body.addEventListener('click', (e) => {
+    const btn = e.target.closest('.nav button');
+    if (!btn) return;
+    
+    document.querySelectorAll('.nav button').forEach(x => x.classList.remove('active'));
+    btn.classList.add('active');
+    
+    document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+    const targetTab = btn.dataset.tab;
+    if (targetTab) {
+      const sec = document.getElementById(targetTab);
+      if (sec) sec.classList.remove('hidden');
+    }
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initNav);
+} else {
+  initNav();
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+
+loadTodayIntoForm();
+applyLanguage(currentLang);
+</script>
+</body>
+</html>
